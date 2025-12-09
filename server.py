@@ -215,6 +215,30 @@ def x_delete_tweet(tweet_id: str) -> str:
     return f"Tweet {tweet_id} deleted successfully."
 
 
+@mcp.tool()
+def x_reply(tweet_id: str, text: str) -> str:
+    """
+    Reply to a tweet.
+
+    Args:
+        tweet_id: The tweet ID to reply to
+        text: Reply content (max 280 characters)
+
+    Returns:
+        Reply tweet ID and URL on success, error message on failure
+    """
+    if len(text) > 280:
+        return f"Error: Reply too long ({len(text)} chars). Max 280."
+
+    result = _post_tweet(text, reply_to_id=tweet_id)
+
+    if result["status"] != 201:
+        return f"Error posting reply: {result['data']}"
+
+    reply_id = result["data"]["data"]["id"]
+    return f"Reply posted!\nID: {reply_id}\nURL: https://twitter.com/i/status/{reply_id}"
+
+
 # ============ Entry Point ============
 
 if __name__ == "__main__":

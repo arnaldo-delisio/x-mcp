@@ -11,6 +11,7 @@ A simple [Model Context Protocol](https://modelcontextprotocol.io/) server for T
 | `x_post_thread(text)` | Post a thread (separate tweets with `\n\n---\n\n`) |
 | `x_get_tweet(id)` | Get tweet details and metrics |
 | `x_delete_tweet(id)` | Delete a tweet |
+| `x_reply(tweet_id, text)` | Reply to a tweet |
 
 ## Requirements
 
@@ -103,7 +104,6 @@ Returns likes, retweets, replies, impressions, quotes, and bookmarks.
 
 - [ ] Upload media (images, video)
 - [ ] Quote tweet
-- [ ] Reply to tweet
 - [ ] Batch metrics
 
 ## License
